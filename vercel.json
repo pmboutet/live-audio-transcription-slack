@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "live-audio-transcription-slack",
+  "builds": [
+    {
+      "src": "src/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "public/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "src/server.js": {
+      "maxDuration": 30
+    }
+  }
+}
